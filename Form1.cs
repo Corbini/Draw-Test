@@ -48,17 +48,27 @@ namespace Draw_Test
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-            this.tester.Change(2, checkBox4.Checked);
+            this.tester.Change(3, checkBox4.Checked);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            this.tester.Change(1, checkBox2.Checked);
+            this.tester.Change(2, checkBox2.Checked);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             this.tester.Change(0, checkBox1.Checked);
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            this.tester.Change(1, checkBox3.Checked);
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            this.tester.Change(4, checkBox5.Checked);
         }
     }
 }

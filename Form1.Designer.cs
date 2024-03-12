@@ -39,6 +39,8 @@
             checkBox2 = new CheckBox();
             checkBox4 = new CheckBox();
             groupBox3 = new GroupBox();
+            checkBox5 = new CheckBox();
+            checkBox3 = new CheckBox();
             checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             groupBox1.SuspendLayout();
@@ -48,7 +50,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(86, 238);
+            button1.Location = new Point(218, 357);
             button1.Name = "button1";
             button1.Size = new Size(200, 40);
             button1.TabIndex = 0;
@@ -78,7 +80,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(numericUpDown1);
-            groupBox1.Location = new Point(292, 227);
+            groupBox1.Location = new Point(439, 346);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(80, 54);
             groupBox1.TabIndex = 6;
@@ -88,9 +90,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(richTextBox1);
-            groupBox2.Location = new Point(201, 12);
+            groupBox2.Location = new Point(248, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(180, 194);
+            groupBox2.Size = new Size(271, 328);
             groupBox2.TabIndex = 8;
             groupBox2.TabStop = false;
             groupBox2.Text = "Result";
@@ -99,13 +101,13 @@
             // 
             richTextBox1.Location = new Point(6, 22);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(168, 166);
+            richTextBox1.Size = new Size(259, 300);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             // 
             // button2
             // 
-            button2.Location = new Point(86, 284);
+            button2.Location = new Point(12, 357);
             button2.Name = "button2";
             button2.Size = new Size(200, 40);
             button2.TabIndex = 9;
@@ -146,15 +148,39 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(checkBox5);
+            groupBox3.Controls.Add(checkBox3);
             groupBox3.Controls.Add(checkBox1);
             groupBox3.Controls.Add(checkBox2);
             groupBox3.Controls.Add(checkBox4);
-            groupBox3.Location = new Point(12, 12);
+            groupBox3.Location = new Point(1, 1);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(172, 194);
+            groupBox3.Size = new Size(241, 333);
             groupBox3.TabIndex = 14;
             groupBox3.TabStop = false;
             groupBox3.Text = "Test Methodes";
+            // 
+            // checkBox5
+            // 
+            checkBox5.AutoSize = true;
+            checkBox5.Location = new Point(6, 124);
+            checkBox5.Name = "checkBox5";
+            checkBox5.Size = new Size(193, 19);
+            checkBox5.TabIndex = 17;
+            checkBox5.Text = "bufferedGraphic Draw Unscaled";
+            checkBox5.UseVisualStyleBackColor = true;
+            checkBox5.CheckedChanged += checkBox5_CheckedChanged;
+            // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Location = new Point(6, 99);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(177, 19);
+            checkBox3.TabIndex = 16;
+            checkBox3.Text = "DrawImageUnscaled Directly";
+            checkBox3.UseVisualStyleBackColor = true;
+            checkBox3.CheckedChanged += checkBox3_CheckedChanged;
             // 
             // checkBox1
             // 
@@ -171,7 +197,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(393, 337);
+            ClientSize = new Size(531, 412);
             Controls.Add(groupBox3);
             Controls.Add(button2);
             Controls.Add(groupBox2);
@@ -204,5 +230,7 @@
         private GroupBox groupBox3;
         private CheckBox checkBox1;
         private RichTextBox richTextBox1;
+        private CheckBox checkBox3;
+        private CheckBox checkBox5;
     }
 }
