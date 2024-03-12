@@ -127,9 +127,9 @@
             checkBox2.AutoSize = true;
             checkBox2.Location = new Point(6, 49);
             checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(154, 19);
+            checkBox2.Size = new Size(142, 19);
             checkBox2.TabIndex = 11;
-            checkBox2.Text = "bufferedGraphicContext";
+            checkBox2.Text = "bufferedGraphic Draw";
             checkBox2.UseVisualStyleBackColor = true;
             checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
@@ -138,9 +138,9 @@
             checkBox4.AutoSize = true;
             checkBox4.Location = new Point(6, 74);
             checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(164, 19);
+            checkBox4.Size = new Size(159, 19);
             checkBox4.TabIndex = 13;
-            checkBox4.Text = "bufferedGraphicsManager";
+            checkBox4.Text = "bufferedGraphics Refresh";
             checkBox4.UseVisualStyleBackColor = true;
             checkBox4.CheckedChanged += checkBox4_CheckedChanged;
             // 
@@ -161,9 +161,9 @@
             checkBox1.AutoSize = true;
             checkBox1.Location = new Point(6, 24);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(139, 19);
+            checkBox1.Size = new Size(129, 19);
             checkBox1.TabIndex = 15;
-            checkBox1.Text = "bufferedGraphicClass";
+            checkBox1.Text = "DrawImage Directly";
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
