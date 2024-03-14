@@ -58,6 +58,9 @@ namespace Draw_Test
             if (methodes[6])
                 result += RunTest("BufferedDrawPartsMatrix", new BufferedDrawMatrixPartsRun(image));
 
+            if (methodes[7])
+                result += RunTest("BufferedDrawOneHundreds", new BufferedDrawOneHundredsRun(image));
+
             if (textbox != null)
             {
                 textbox.Clear();

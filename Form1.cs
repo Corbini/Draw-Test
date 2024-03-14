@@ -80,5 +80,10 @@ namespace Draw_Test
         {
             this.tester.Change(6, checkBox7.Checked);
         }
+
+        private void checkBox8_CheckedChanged(object sender, EventArgs e)
+        {
+            this.tester.Change(7, checkBox8.Checked);
+        }
     }
 }

@@ -44,6 +44,7 @@
             checkBox5 = new CheckBox();
             checkBox3 = new CheckBox();
             checkBox1 = new CheckBox();
+            checkBox8 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -149,6 +150,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(checkBox8);
             groupBox3.Controls.Add(checkBox7);
             groupBox3.Controls.Add(checkBox6);
             groupBox3.Controls.Add(checkBox5);
@@ -218,6 +220,17 @@
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
+            // checkBox8
+            // 
+            checkBox8.AutoSize = true;
+            checkBox8.Location = new Point(6, 199);
+            checkBox8.Name = "checkBox8";
+            checkBox8.Size = new Size(162, 19);
+            checkBox8.TabIndex = 20;
+            checkBox8.Text = "buffered Draw Matrix Part";
+            checkBox8.UseVisualStyleBackColor = true;
+            checkBox8.CheckedChanged += checkBox8_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -259,5 +272,6 @@
         private CheckBox checkBox5;
         private CheckBox checkBox6;
         private CheckBox checkBox7;
+        private CheckBox checkBox8;
     }
 }
