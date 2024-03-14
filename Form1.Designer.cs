@@ -39,6 +39,8 @@
             checkBox2 = new CheckBox();
             checkBox4 = new CheckBox();
             groupBox3 = new GroupBox();
+            checkBox7 = new CheckBox();
+            checkBox6 = new CheckBox();
             checkBox5 = new CheckBox();
             checkBox3 = new CheckBox();
             checkBox1 = new CheckBox();
@@ -119,7 +121,6 @@
             // 
             openFileDialog1.DefaultExt = "png";
             openFileDialog1.FileName = "openFileDialog1";
-            openFileDialog1.Filter = "PNG  files|*.png";
             openFileDialog1.ReadOnlyChecked = true;
             openFileDialog1.Title = "Bitmap selector";
             openFileDialog1.FileOk += openFileDialog1_FileOk;
@@ -148,6 +149,8 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(checkBox7);
+            groupBox3.Controls.Add(checkBox6);
             groupBox3.Controls.Add(checkBox5);
             groupBox3.Controls.Add(checkBox3);
             groupBox3.Controls.Add(checkBox1);
@@ -159,6 +162,28 @@
             groupBox3.TabIndex = 14;
             groupBox3.TabStop = false;
             groupBox3.Text = "Test Methodes";
+            // 
+            // checkBox7
+            // 
+            checkBox7.AutoSize = true;
+            checkBox7.Location = new Point(6, 174);
+            checkBox7.Name = "checkBox7";
+            checkBox7.Size = new Size(167, 19);
+            checkBox7.TabIndex = 19;
+            checkBox7.Text = "buffered Draw Matrix Parts";
+            checkBox7.UseVisualStyleBackColor = true;
+            checkBox7.CheckedChanged += checkBox7_CheckedChanged;
+            // 
+            // checkBox6
+            // 
+            checkBox6.AutoSize = true;
+            checkBox6.Location = new Point(6, 149);
+            checkBox6.Name = "checkBox6";
+            checkBox6.Size = new Size(138, 19);
+            checkBox6.TabIndex = 18;
+            checkBox6.Text = "buffered Draw Matrix";
+            checkBox6.UseVisualStyleBackColor = true;
+            checkBox6.CheckedChanged += checkBox6_CheckedChanged;
             // 
             // checkBox5
             // 
@@ -232,5 +257,7 @@
         private RichTextBox richTextBox1;
         private CheckBox checkBox3;
         private CheckBox checkBox5;
+        private CheckBox checkBox6;
+        private CheckBox checkBox7;
     }
 }

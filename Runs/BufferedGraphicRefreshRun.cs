@@ -26,6 +26,8 @@ namespace Draw_Test.Runs
             grafx = context.Allocate(CreateGraphics(),
                  new Rectangle(0, 0, image.Width, image.Height));
 
+            grafx.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+
             count = 0;
 
             Show();

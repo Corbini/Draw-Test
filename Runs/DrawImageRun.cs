@@ -21,6 +21,8 @@ namespace Draw_Test.Runs
             backBuffer = new Bitmap(image.Width, image.Height);
             drawingArea = Graphics.FromImage(backBuffer);
 
+            drawingArea.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+
             Show();
         }
 

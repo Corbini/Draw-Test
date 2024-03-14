@@ -10,13 +10,13 @@ using System.Windows.Media.TextFormatting;
 
 namespace Draw_Test.Runs
 {
-    public partial class BufferedGraphicDrawRun : TestRun
+    public partial class BufferedDrawMatrixRun : TestRun
     {
         BufferedGraphicsContext context;
         BufferedGraphics grafx;
         int count;
 
-        public BufferedGraphicDrawRun(Image image) : base()
+        public BufferedDrawMatrixRun(Image image) : base()
         {
             Size = new Size(image.Width, image.Height);
 
@@ -27,6 +27,7 @@ namespace Draw_Test.Runs
                  new Rectangle(0, 0, image.Width, image.Height));
 
             grafx.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+
             count = 0;
 
             Show();
@@ -40,7 +41,19 @@ namespace Draw_Test.Runs
                 grafx.Graphics.FillRectangle(Brushes.Black, 0, 0, image.Width, image.Height);
             }
 
-            grafx.Graphics.DrawImage(image, 0, 0);
+            uint deviation = 10;
+
+            for (int i = 0; i< deviation; i++)
+                for (int j = 0; j < deviation; j++)
+                {
+                    grafx.Graphics.DrawImage(image, 
+                        0 + i * (image.Width / deviation),
+                        0 + j * (image.Height / deviation),
+                        (image.Width / deviation), 
+                        (image.Height / deviation)
+                        );
+                }
+
             grafx.Render(CreateGraphics());
         }
     }

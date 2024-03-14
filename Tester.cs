@@ -22,7 +22,7 @@ namespace Draw_Test
         {
             testruns = 10;
             image = Image.FromFile("test_screen.jpg");
-            methodes = new bool[6];
+            methodes = new bool[20];
         }
 
         public void SetTextBox(RichTextBox textbox)
@@ -52,6 +52,11 @@ namespace Draw_Test
             if (methodes[4])
                 result += RunTest("BufferedGraphicDrawUnscaled", new BufferedGraphicDrawUnscaledRun(image));
 
+            if (methodes[5])
+                result += RunTest("BufferedDrawMatrix", new BufferedDrawMatrixRun(image));
+
+            if (methodes[6])
+                result += RunTest("BufferedDrawPartsMatrix", new BufferedDrawMatrixPartsRun(image));
 
             if (textbox != null)
             {
