@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Reflection.Metadata;
+using Draw_Test.Runs;
 
 namespace Draw_Test
 {
@@ -21,7 +22,7 @@ namespace Draw_Test
         {
             testruns = 10;
             image = Image.FromFile("test_screen.jpg");
-            methodes = new bool[4];
+            methodes = new bool[20];
         }
 
         public void SetTextBox(RichTextBox textbox)
@@ -37,13 +38,28 @@ namespace Draw_Test
             string result = "";
 
             if (methodes[0])
-                result += run0(debug);
+                result += RunTest("DrawImage", new DrawImageRun(image));
 
             if (methodes[1])
-                result += run1(debug);
+                result += RunTest("DrawImageUnscaled", new DrawImageUnscaledRun(image));
 
             if (methodes[2])
-                result += run2(debug);
+                result += RunTest("BufferedGraphicDraw", new BufferedGraphicDrawRun(image));
+
+            if (methodes[3])
+                result += RunTest("BufferedGraphicRefresh", new BufferedGraphicRefreshRun(image));
+
+            if (methodes[4])
+                result += RunTest("BufferedGraphicDrawUnscaled", new BufferedGraphicDrawUnscaledRun(image));
+
+            if (methodes[5])
+                result += RunTest("BufferedDrawMatrix", new BufferedDrawMatrixRun(image));
+
+            if (methodes[6])
+                result += RunTest("BufferedDrawPartsMatrix", new BufferedDrawMatrixPartsRun(image));
+
+            if (methodes[7])
+                result += RunTest("BufferedDrawOneHundreds", new BufferedDrawOneHundredsRun(image));
 
             if (textbox != null)
             {
@@ -52,18 +68,9 @@ namespace Draw_Test
             }
         }
 
-        private string run0(bool debug = false)
+        private string RunTest(string name, TestRun test)
         {
-            Debug.WriteLine($"Running: run0");
-
-            // Initialize methode for the buffor
-
-            Form myform = new Form();
-            myform.Size = new Size(this.image.Width, this.image.Height);
-            myform.Show();
-
-            Bitmap backBuffer = new Bitmap(this.image.Width, this.image.Height);
-            Graphics drawingArea = Graphics.FromImage(backBuffer);
+            Debug.WriteLine($"Running: {name}");
 
             // Test buffor
             long elapsedMs = 0;
@@ -71,11 +78,7 @@ namespace Draw_Test
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
 
-                drawingArea.DrawImage(image, 0, 0);
-                
-
-                myform.CreateGraphics().DrawImage(backBuffer, 0, 0);
-                //buffor call
+                test.Test(image);
 
                 watch.Stop();
                 elapsedMs += watch.ElapsedMilliseconds;
@@ -84,123 +87,9 @@ namespace Draw_Test
 
             Debug.WriteLine($"Average time: {elapsedMs} Ms");
 
-            if (debug)
-                myform.ShowDialog();
+            test.Hide();
 
-            myform.Hide();
-            return $"Methode run0\nAverage time: {elapsedMs} Ms\n";
-        }
-
-        private string run1(bool debug = false)
-        {
-            Debug.WriteLine($"Running: run1");
-
-            // Initialize methode for the buffor
-
-            Form myform = new Form();
-            myform.Size = new Size(this.image.Width, this.image.Height);
-            myform.Show();
-
-            BufferedGraphicsContext context = BufferedGraphicsManager.Current;
-            context.MaximumBuffer = new Size(image.Width + 1, image.Height + 1);
-
-            BufferedGraphics grafx = context.Allocate(myform.CreateGraphics(),
-                 new Rectangle(0, 0, image.Width, image.Height));
-
-            int count = 0;
-
-            // Test buffor
-            long elapsedMs = 0;
-            for (int i = 0; i < testruns; i++)
-            {
-                var watch = System.Diagnostics.Stopwatch.StartNew();
-
-                //buffor call
-
-                // clear view as specified in documentation
-                if (++count > 5)
-                {
-                    count = 0;
-                    grafx.Graphics.FillRectangle(Brushes.Black, 0, 0, image.Width, image.Height);
-                }
-
-                grafx.Graphics.DrawImage(image, 0, 0);
-                grafx.Render(myform.CreateGraphics());
-
-                watch.Stop();
-                elapsedMs += watch.ElapsedMilliseconds;
-            }
-            elapsedMs /= testruns;
-
-            Debug.WriteLine($"Average time: {elapsedMs} Ms");
-
-            if (debug)
-                myform.ShowDialog();
-
-            myform.Hide();
-            return $"Methode run2\nAverage time: {elapsedMs} Ms\n";
-        }
-        public class BufferingExample : Form
-        {
-            public BufferedGraphics grafx;
-
-            public BufferingExample(int width, int height) : base()
-            {
-                this.Size = new Size(width, height);
-
-                BufferedGraphicsContext context = BufferedGraphicsManager.Current;
-                context.MaximumBuffer = new Size(width + 1, height + 1);
-                grafx = context.Allocate(this.CreateGraphics(),
-                     new Rectangle(0, 0, width, height));
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                grafx.Render(e.Graphics);
-            }
-        }
-
-        private string run2(bool debug = false)
-        {
-            Debug.WriteLine($"Running: run2");
-
-            // Initialize methode for the buffor
-
-            BufferingExample myform = new BufferingExample(this.image.Width, this.image.Height);
-            myform.Show();
-
-            int count = 0;
-
-            // Test buffor
-            long elapsedMs = 0;
-            for (int i = 0; i < testruns; i++)
-            {
-                var watch = System.Diagnostics.Stopwatch.StartNew();
-
-                //buffor call
-
-                // clear view as specified in documentation
-                if (++count > 5)
-                {
-                    count = 0;
-                    myform.grafx.Graphics.FillRectangle(Brushes.Black, 0, 0, image.Width, image.Height);
-                }
-
-                myform.grafx.Graphics.DrawImage(image, 0, 0);
-                myform.Refresh();
-
-                watch.Stop();
-                elapsedMs += watch.ElapsedMilliseconds;
-            }
-            elapsedMs /= testruns;
-
-            Debug.WriteLine($"Average time: {elapsedMs} Ms");
-
-            if (debug)
-                myform.ShowDialog();
-
-            myform.Hide();
-            return $"Methode run2\nAverage time: {elapsedMs} Ms\n";
+            return $"Test {name}\nAverage time: {elapsedMs} Ms\n";
         }
 
         public void Load(string path)
@@ -218,7 +107,7 @@ namespace Draw_Test
 
         public void Change(int place, bool run)
         {
-            if (methodes.Length < place)
+            if (0 <= methodes.Length && methodes.Length < place)
             {
                 Debug.WriteLine($"Can't change methode run: incorrect place {place}");
                 return;
@@ -226,26 +115,6 @@ namespace Draw_Test
 
             Debug.WriteLine($"Methode run at {place} change to: {run}");
             methodes[place] = run;
-        }
-
-        static void TestRun(string run_name, string text)
-        {
-            Console.WriteLine("Testing: " + run_name);
-
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine(text);
-            }
-        }
-
-        static void loadBitmap(string run_name, string text)
-        {
-            Console.WriteLine("Testing: " + run_name);
-
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine(text);
-            }
         }
     }
 }
